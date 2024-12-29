@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "pnpm exec node ./index.js",
-    "build": "pnpm install"
+    "build": "pnpm install && git clone git@github.com:jose-pepe-bsas/proyectos_gtd.git && cd ./proyectos_gtd/ && rm -rf .git/"
   },
   "keywords": [],
   "author": "",
