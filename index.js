@@ -1,22 +1,35 @@
+
 const express = require("express");
-//const swaggerJSDoc = require("swagger-jsdoc");
-//const swaggerUi = require("swagger-ui-express");
+const swaggerJSDoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 //const multer = require("multer");
 const cors = require("cors");
-//const dotenv = require("dotenv");
+
+const swaggerDefinition = {
+  openapi: "3.0.0",
+  info: {
+    title: "Desarrollo posicional",
+    version: "1.0.0",
+    description:
+      "      Personal development",
+    contact: {
+      name: "for inquires, whatsapp me",
+      url: "https://api.whatsapp.com/send?phone=+54%209%2011%202401%200760&text=Hola%20JP!%20Vengo%20de%20inmobiler%20docs%20y%20queria%20consultarte%20lo%20siguiente:",
+    },
+  },
+
+};
+
+const options = {
+  swaggerDefinition,
+  apis: ["index.js"],
+};
+
 //import { swaggerConfig } from "./src/config/swagger.js";
-//import { sqlite_db } from "./src/tech_utilities/database_builder.js";
-
-//dotenv.config({ path: "./.devel.env" });
-
-//const app_cf = process.env;
-
-//const storage = await sqlite_db("dev", null, app_cf);
-
-//const upload = multer({ dest: app_cf.DOCUMENTS_DESTINATION });
+const swaggerConfig = swaggerJSDoc(options);
 
 const app = express();
-//app.use(app_cf.DOC_URL, swaggerUi.serve, swaggerUi.setup(swaggerConfig));
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
 // CORS
 app.use(
   cors({
@@ -26,10 +39,6 @@ app.use(
   }),
 );
 
-
-app.get("/", function (req, res) {
-  res.send("right");
-});
 
 app.listen(3000, () => {
   console.log("Running on 3000");
